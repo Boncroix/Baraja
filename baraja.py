@@ -9,16 +9,18 @@ def crearBaraja():
     return baraja
 
 
-baraja = (crearBaraja())
-
-
-def barajar(baraja):
-    baraja_barajada = set()
+def mezclar(baraja):
+    baraja_mezclada = set()
     for carta in baraja:
-        baraja_barajada.add(carta)
-    return baraja_barajada
+        baraja_mezclada.add(carta)
+    return list(baraja_mezclada)
 
 
-baraja_barajada = (barajar(baraja))
-print(baraja_barajada)
-print(len(baraja_barajada))
+def repartir(mano, jugadores, baraja):
+    listas_jugadores = [[] for _ in range(jugadores)]
+    for _ in range(jugadores):
+        jugadores = jugadores - 1
+        for _ in range(mano):
+            listas_jugadores[jugadores].append(baraja[0])
+            baraja.remove(baraja[0])
+    return listas_jugadores
