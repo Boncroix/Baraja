@@ -1,3 +1,6 @@
+import random
+
+
 def crearBaraja():
     palos = ['O', 'C', 'E', 'B']
     cartas = ['A', '2', '3', '4', '5', '6', '7', 'S', 'C', 'R']
@@ -10,10 +13,11 @@ def crearBaraja():
 
 
 def mezclarBaraja(baraja):
-    baraja_mezclada = set()
-    for carta in baraja:
-        baraja_mezclada.add(carta)
-    return list(baraja_mezclada)
+    for _ in range(200):
+        posicion1 = random.randint(0, len(baraja) - 1)
+        posicion2 = random.randint(0, len(baraja) - 1)
+        baraja[posicion1], baraja[posicion2] = baraja[posicion2], baraja[posicion1]
+    return baraja
 
 
 def repartir(mano, jugadores, baraja):
