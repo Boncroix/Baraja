@@ -1,35 +1,65 @@
+import random
+
+
 class Baraja():
     def __init__(self, mano, jugadores):
-        self.palos = ['O', 'C', 'E', 'B']
-        self.cartas = ['A', '2', '3', '4', '5', '6', '7', 'S', 'C', 'R']
-        self.baraja = []
-        self.baraja_mezclada = set()
         self.mano = mano
         self.jugadores = jugadores
+        self.baraja = self.crearBaraja()
+        self.baraja = self.mezclarBaraja()
+        self.cartas_jugadores = self.repartir(mano, jugadores)
 
-        for self.palo in self.palos:
-            for carta in self.cartas:
-                self.baraja.append(carta + self.palo)
+    def crearBaraja(self):
+        # Crear baraja
+        palos = ['o', 'c', 'e', 'b']
+        cartas = ['A', '2', '3', '4', '5', '6', '7', 'S', 'C', 'R']
+        self.baraja = []
+        for palo in palos:
+            for carta in cartas:
+                self.baraja.append(carta + palo)
+        return self.baraja
 
-    def barajar(self):
-        for carta in self.baraja:
-            self.baraja_mezclada.add(carta)
-        return list(self.baraja_mezclada)
+    def mezclarBaraja(self):
+        # Mezclar baraja
+        for _ in range(200):
+            posicion1 = random.randint(0, len(self.baraja) - 1)
+            posicion2 = random.randint(0, len(self.baraja) - 1)
+            self.baraja[posicion1], self.baraja[posicion2] = self.baraja[posicion2], self.baraja[posicion1]
+        return self.baraja
 
-    def repartir(self):
-        cartas_jugadores = [[] for _ in range(self.jugadores)]
-        for _ in range(self.jugadores):
-            self.jugadores = self.jugadores - 1
-            for _ in range(self.mano):
-                cartas_jugadores[self.jugadores].append(self.baraja[0])
-                self.baraja.remove(self.baraja[0])
-        return cartas_jugadores
+    def repartir(self, mano, jugadores):
+        # Validación datos de entrada
+        if not isinstance(mano, int):
+            raise TypeError('Mano debe ser un número entero')
+        if not isinstance(jugadores, int):
+            raise TypeError('Jugadores debe de ser un número entero')
 
-    def __str__(self):
-        return self.cartas_jugadores
+        # Creación de listas jugadores
+        listas_jugadores = [[] for _ in range(jugadores)]
 
-    def __repr__(self):
-        return self.__str__()
+        # Validar si hay cartas para todos los jugadores
+        longitud_baraja = len(self.baraja)
+        if longitud_baraja < mano * jugadores:
+            if longitud_baraja < jugadores:
+                raise ValueError('No hay suficientes cartas para cada jugador')
+            else:
+                # Repartir tantas cartas como se puedan
+                for jugador in range(jugadores):
+                    for _ in range(longitud_baraja//jugadores):
+                        listas_jugadores[jugador - 1].append(self.baraja[0])
+                        self.baraja.remove(self.baraja[0])
+                print(
+                    f'No se han podido repartir {mano} cartas para cada jugador ya que la baraja solo tiene {longitud_baraja} cartas, se han repartiro {longitud_baraja//jugadores}')
+                return listas_jugadores
+        else:
+
+            # Repartir cartas
+            for _ in range(jugadores):
+                jugadores = jugadores - 1
+                for _ in range(mano):
+                    listas_jugadores[jugadores].append(self.baraja[0])
+                    self.baraja.remove(self.baraja[0])
+            return listas_jugadores
 
 
-baraja = Baraja()
+mano = Baraja('1', 41)

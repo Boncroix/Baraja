@@ -9,7 +9,7 @@ def crearBaraja():
     return baraja
 
 
-def mezclar(baraja):
+def mezclarBaraja(baraja):
     baraja_mezclada = set()
     for carta in baraja:
         baraja_mezclada.add(carta)
