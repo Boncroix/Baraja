@@ -2,7 +2,18 @@ from baraja_clase import Baraja
 
 mano = Baraja(3, 3)
 print(mano.baraja)
+print()
 mano.repartir(3, 3)
+print(mano.baraja)
+print()
+mano.repartir(3, 3)
+print(mano.baraja)
+print()
+mano.repartir(3, 3)
+print(mano.baraja)
+print()
+mano.repartir(3, 3)
+print(mano.cartas_jugadores)
 
 '''
 baraja = crearBaraja()
