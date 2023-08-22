@@ -2,9 +2,6 @@ from baraja_clase import Baraja
 from baraja import *
 
 mano = Baraja()
-print(dir(Baraja))
-'''
-mano = Baraja()
 print(mano.baraja)
 print()
 mano.repartir(3, 3)
@@ -30,6 +27,8 @@ print()
 mano.mezclarBaraja()
 print(mano.baraja)
 
+
+'''
 baraja = crearBaraja()
 print(baraja)
 print()
