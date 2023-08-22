@@ -1,6 +1,7 @@
 from baraja_clase import Baraja
 from baraja import *
-'''
+
+
 mano = Baraja(3, 3)
 print(mano.baraja)
 print()
@@ -27,3 +28,5 @@ listas_jugadores = repartir(5, 5, baraja)
 print(listas_jugadores)
 print()
 print(baraja)
+
+'''
