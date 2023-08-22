@@ -2,12 +2,10 @@ import random
 
 
 class Baraja():
-    def __init__(self, mano, jugadores):
-        self.mano = mano
-        self.jugadores = jugadores
+    def __init__(self):
         self.baraja = self.crearBaraja()
         self.baraja = self.mezclarBaraja()
-        self.cartas_jugadores = self.repartir(mano, jugadores)
+        self.cartas_jugadores = []
 
     def crearBaraja(self):
         # Crear baraja
