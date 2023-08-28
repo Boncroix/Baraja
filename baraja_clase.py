@@ -4,7 +4,6 @@ import random
 class Baraja():
     def __init__(self):
         self.baraja = self.crearBaraja()
-        self.baraja = self.mezclarBaraja()
         self.cartas_jugadores = []
 
     def crearBaraja(self):
@@ -33,7 +32,9 @@ class Baraja():
             raise TypeError('Jugadores debe de ser un número entero')
 
         # Creación de listas jugadores
-        listas_jugadores = [[] for _ in range(jugadores)]
+        listas_jugadores = []
+        for _ in range(jugadores):
+            listas_jugadores.append([])
 
         # Validar si hay cartas para todos los jugadores
         longitud_baraja = len(self.baraja)

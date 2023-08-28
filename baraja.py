@@ -21,10 +21,10 @@ def mezclarBaraja(baraja):
 
 
 def repartir(mano, jugadores, baraja):
-    listas_jugadores = [[] for _ in range(jugadores)]
-    for _ in range(jugadores):
-        jugadores = jugadores - 1
+    listas_jugadores = []
+    for i in range(jugadores):
+        listas_jugadores.append([])
         for _ in range(mano):
-            listas_jugadores[jugadores].append(baraja[0])
+            listas_jugadores[i].append(baraja[0])
             baraja.remove(baraja[0])
     return listas_jugadores
